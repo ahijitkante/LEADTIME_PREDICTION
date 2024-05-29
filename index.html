@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead Time Prediction - Vizag Steel Plant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-image: url('/static/background_image.jpg'); /* Replace 'background_image.jpg' with your image file name */
+            background-size: cover;
+            background-position: center;
+        }
+        h1, h2 {
+            color: white;
+            text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black; /* Add black text shadow for better visibility */
+        }
+        form {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid white; /* Add white border */
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            color: white; /* Change label text color to white */
+            text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black; /* Add black text shadow for better visibility */
+        }
+        select, input {
+            padding: 10px;
+            margin-top: 5px;
+            width: 300px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>LEAD TIME PREDICTION VIZAG STEEL PLANT</h1>
+    <form action="/predict" method="post">
+        <label for="product">Select Product:</label>
+        <select id="product" name="product">
+            <option value="1">SODA (LYE) RAYON GRADE 46-48% IS-252 (ON 100% BASIS). AS PER IS: 252.</option>
+            <option value="2">AUSTIC SODA (LYE) RAYON GRADE 46-48% IS-252 (ON 100% BASIS). AS PER IS: 252. SODIUM CARBONATE(AS na2co3) :0.40% max. Sodium hydroxide(as NAOH)99.50% Min.,CHLORIDES (AS NACL)0.10%(MAX), SULPHATES (AS NA2SO4):0.10% MAX. SILICATES (AS SIO2 )0.02% MAX.,IRON AS FE:20 PPM MAX. COPPER ( As Cu):2 PPM MAX., CHLOFRATES & PER CHLORATES (AS NACL03) 10 PPM MAX. MATTER INSOLUBLE IN WATER 0.05 MAX. MANGANESE (AS Mn) 1PPM MAX.</option>
+            <option value="3">HIGH SILICA SAND FOR USE IN FOUNDRY, 90-95% AS PER IS :1987-2002, GRADE-C</option>
+            <option value="4">SULPHURIC ACID (TECH.GRADE) CONFIRMING TO IS:266-1993 WITH A MINIMUM OF 98% CONCENTRATION.</option>
+            <option value="5">SULPHURIC ACID (TECH.GRADE) CONFIRMING TO IS:266-1993 WITH A MINIMUM OF 98% CONCENTRATION.TOTAL ACIDITY AS H2SO4 % BY MASS :98% MIN, RESIDUE ON IGNITION % BY MASS MAX:0.20%, IRON AS FE% BY MASS: MAX:0.05%, LEAD AS Pb % BY MASS: MAX:0.005%, ARCENIC AS "As" % BY MASS : MAX:0.004%</option>
+        </select>
+
+        <label for="indent_date">Indent Date:</label>
+        <input type="date" id="indent_date" name="indent_date" required>
+
+        <button type="submit">Predict Lead Time</button>
+    </form>
+
+    {% if prediction %}
+    <h2>Predicted Lead Time: {{ prediction }} days</h2>
+    <h2>Expected Receipt Date: {{ receipt_date }}</h2>
+    {% endif %}
+</body>
+</html>
